@@ -1,0 +1,64 @@
+<!--index.wxml-->
+<view class="container">
+  <view>
+    <text>你已经获胜了 {{gameOfWin}} 次
+    </text>
+  </view>
+
+  <view>
+    <text>电脑手中还有 {{computerArray.length}} 张牌
+    </text>
+  </view>
+
+  <view>
+    <text>当前牌</text>
+    
+    <view wx:if="{{currentPileValue%100 >= 0 && currentPileValue%100 < 10}}"> 
+      <button class="weui-btn mini-btn" type="primary" size="mini" disabled="true">
+        {{currentPileValue%10}}
+      </button>
+    </view>
+    <view wx:if="{{(currentPileValue % 100 >= 10) && (currentPileValue % 100 < 20)}}"> 
+      <button class="weui-btn mini-btn" type="default" size="mini" disabled="true">
+        {{currentPileValue%10}}
+      </button>
+    </view>
+
+    <view wx:if="{{(currentPileValue % 100 >= 20) && (currentPileValue % 100 < 30)}}"> 
+      <button class="weui-btn mini-btn" type="warn" size="mini" disabled="true">
+        {{currentPileValue%10}}
+      </button>
+    </view>
+
+  </view>
+        
+  <view>
+    <text>总共牌</text>
+    <label style="color:{{currentPileColor}};">{{pileArray.length}}</label>
+  </view>
+  
+  <view style="margin-bottom:50px"> 
+    <button class="weui-btn mini-btn" type="warn" size="mini" bindtap="addToUser">
+        再赐我一张牌
+    </button>
+    <button class="weui-btn mini-btn" type="primary" size="mini" bindtap="initial">
+        重置大法好
+    </button>
+  </view>
+
+  <view class="button-sp-area" wx:for="{{userArray}}" wx:for-index="idx" wx:for-item="itemName">
+      <button wx:if="{{itemName%100 >= 0 && itemName%100 < 10}}" class="weui-btn mini-btn" type="primary" size="mini" bindtap="cardClicking" data-name="{{itemName}}">
+        {{itemName%10}}
+      </button>
+
+      <button wx:if="{{(itemName % 100 >= 10) && (itemName % 100 < 20)}}" class="weui-btn mini-btn" type="default" size="mini" bindtap="cardClicking" data-name="{{itemName}}">
+        {{itemName%10}}
+      </button>
+
+      <button wx:if="{{(itemName % 100 >= 20) && (itemName % 100 < 30)}}" class="weui-btn mini-btn" type="warn" size="mini" bindtap="cardClicking" data-name="{{itemName}}">
+        {{itemName%10}}
+      </button>
+
+  </view>
+
+</view>
